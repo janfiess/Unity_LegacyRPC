@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{B65411EC-EB18-C9D5-F9E2-80A9CFC529C2}") = "Unity_LegacyRPC", "Assembly-CSharp.csproj", "{BE693221-6AB0-3E33-1CD2-6C8453F2C58A}"
+EndProject
+Project("{B65411EC-EB18-C9D5-F9E2-80A9CFC529C2}") = "Unity_LegacyRPC", "Assembly-CSharp-Editor.csproj", "{794F56CC-040B-17B5-6057-D4E86762AB3B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE693221-6AB0-3E33-1CD2-6C8453F2C58A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE693221-6AB0-3E33-1CD2-6C8453F2C58A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE693221-6AB0-3E33-1CD2-6C8453F2C58A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE693221-6AB0-3E33-1CD2-6C8453F2C58A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{794F56CC-040B-17B5-6057-D4E86762AB3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{794F56CC-040B-17B5-6057-D4E86762AB3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{794F56CC-040B-17B5-6057-D4E86762AB3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{794F56CC-040B-17B5-6057-D4E86762AB3B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
