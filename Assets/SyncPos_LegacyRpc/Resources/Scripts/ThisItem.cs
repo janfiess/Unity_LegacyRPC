@@ -13,12 +13,44 @@ public class ThisItem : MonoBehaviour
     [ReadOnly] public bool canBeMoved = true, canBeRotated = true;
     public Text text_isMovable;
     Network_Maneger networkManager;
+    Items_Manager itemsManager;
     Vector3 current_position, previous_position;
     Vector3 current_orientation, previous_orientation;
-    GameObject thatItem = null;
+    [ReadOnly] public GameObject prefab; // check which prefab is this item's origin
+    GameObject thatItem = null; // if this item hits another item, thatItem is that other item
     void Start()
     {
         networkManager = Reference_Manager.Instance.networkManager;
+        itemsManager = Reference_Manager.Instance.itemsManager;
+
+        /*******************************************************
+        Find out the prefab of this instance
+        ******************************************************* */
+
+        string thisItemName = this.gameObject.name;
+        string prefabName;
+        if(thisItemName.Contains("(")){ // an instance of a prefab "Item_Green" gets the name "Item_Green(Clone)" 
+            prefabName = thisItemName.Substring(0, thisItemName.IndexOf ("(")); // get the prefab's name by removing the "(Instance)"
+        }
+        else prefabName = thisItemName; // if the item is not instantiated from a prefab but just dragged into the scene
+        
+        prefab = Items_Manager.itemPrefabs_dict[prefabName];
+
+        /*******************************************************
+        Apply an unique name to this spawned instance: Prefab name + incrementing number
+        ******************************************************* */
+ 
+        gameObject.name = prefabName+ itemsManager.itemNumber; 
+        itemsManager.itemNumber++;
+ 
+        
+        /*******************************************************
+        Apply this instance to the dictionary of items which are currently in scene
+        ******************************************************* */
+
+
+
+        
         Items_Manager.items_dict.Add(gameObject.name, gameObject);
         print("Added to items_dict: " + gameObject.name);
     }
