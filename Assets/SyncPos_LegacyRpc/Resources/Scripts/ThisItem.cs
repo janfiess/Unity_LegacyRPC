@@ -11,7 +11,6 @@ public class ThisItem : MonoBehaviour
 
     [ReadOnly] public bool thisClient_canModify_thisItem = false;
     [ReadOnly] public bool canBeMoved = true, canBeRotated = true;
-    public Text text_isMovable;
     Network_Maneger networkManager;
     Items_Manager itemsManager;
     Vector3 current_position, previous_position;
@@ -29,28 +28,26 @@ public class ThisItem : MonoBehaviour
 
         string thisItemName = this.gameObject.name;
         string prefabName;
-        if(thisItemName.Contains("(")){ // an instance of a prefab "Item_Green" gets the name "Item_Green(Clone)" 
-            prefabName = thisItemName.Substring(0, thisItemName.IndexOf ("(")); // get the prefab's name by removing the "(Instance)"
+        if (thisItemName.Contains("("))
+        { // an instance of a prefab "Item_Green" gets the name "Item_Green(Clone)" 
+            prefabName = thisItemName.Substring(0, thisItemName.IndexOf("(")); // get the prefab's name by removing the "(Instance)"
         }
         else prefabName = thisItemName; // if the item is not instantiated from a prefab but just dragged into the scene
-        
+
         prefab = Items_Manager.itemPrefabs_dict[prefabName];
 
         /*******************************************************
         Apply an unique name to this spawned instance: Prefab name + incrementing number
         ******************************************************* */
- 
-        gameObject.name = prefabName+ itemsManager.itemNumber; 
+
+        gameObject.name = prefabName + itemsManager.itemNumber;
         itemsManager.itemNumber++;
- 
-        
+
+
         /*******************************************************
         Apply this instance to the dictionary of items which are currently in scene
         ******************************************************* */
 
-
-
-        
         Items_Manager.items_dict.Add(gameObject.name, gameObject);
         print("Added to items_dict: " + gameObject.name);
     }
@@ -85,21 +82,7 @@ public class ThisItem : MonoBehaviour
 
 
 
-        /********************************************************
-		Print debug text
-		******************************************************** */
-
-        if (canBeMoved == true)
-        {
-            if (text_isMovable.text != "Item movable")
-                text_isMovable.text = "Item movable";
-        }
-
-        if (canBeMoved == false)
-        {
-            if (text_isMovable.text != "Item   NOT   movable")
-                text_isMovable.text = "Item   NOT   movable";
-        }
+   
     }
 
 

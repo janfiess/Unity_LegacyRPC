@@ -17,8 +17,9 @@ public class Network_Maneger : MonoBehaviour
     [ReadOnly] public bool isServer;
 
     public Dictionary<string, GameObject> currentItems = new Dictionary<string, GameObject>();
-    public int itemNumber = 0;
-    public GameObject syncedObject;
+    // public int itemNumber = 0;
+    // public GameObject syncedObject;
+    ItemSpawner itemSpawner;
 
     void Awake()
     {
@@ -29,6 +30,8 @@ public class Network_Maneger : MonoBehaviour
         if (ipAddress_server == "") ipAddress_server = "127.0.0.1";
         // StartServer();
         // StartClient();
+
+        itemSpawner = GetComponent<ItemSpawner>();
     }
 
     /********************************************************
@@ -208,5 +211,19 @@ public class Network_Maneger : MonoBehaviour
              selectedItem.GetComponent<ThisItem>().canBeMoved = bool_authority;
         }
     }
+
+     /********************************************************
+     Spawn items over network
+     ******************************************************** */
+     public void SpawnItem_overNetwork_sender(GameObject itemToSpawn_prefab, Vector3 position){
+         networkView.RPC("SpawnItem_overNetwork", RPCMode.All, itemToSpawn_prefab.name, position);
+
+     }
+
+     [RPC]
+     public void SpawnItem_overNetwork(string itemToSpawn_prefab_name, Vector3 position){
+         GameObject itemToSpawn_prefab = Items_Manager.itemPrefabs_dict[itemToSpawn_prefab_name];
+         itemSpawner.SpawnItem(itemToSpawn_prefab, position);
+     }
 
 }
