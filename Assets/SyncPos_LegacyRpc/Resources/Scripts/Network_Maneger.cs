@@ -20,6 +20,7 @@ public class Network_Maneger : MonoBehaviour
     // public int itemNumber = 0;
     // public GameObject syncedObject;
     ItemSpawner itemSpawner;
+    ItemRemover itemRemover;
 
     void Awake()
     {
@@ -32,6 +33,7 @@ public class Network_Maneger : MonoBehaviour
         // StartClient();
 
         itemSpawner = GetComponent<ItemSpawner>();
+        itemRemover = GetComponent<ItemRemover>();
     }
 
     /********************************************************
@@ -224,6 +226,22 @@ public class Network_Maneger : MonoBehaviour
      public void SpawnItem_overNetwork(string itemToSpawn_prefab_name, Vector3 position){
          GameObject itemToSpawn_prefab = Items_Manager.itemPrefabs_dict[itemToSpawn_prefab_name];
          itemSpawner.SpawnItem(itemToSpawn_prefab, position);
+     }
+
+
+
+     /********************************************************
+     Remove items over network
+     ******************************************************** */
+     public void RemoveItem_overNetwork_sender(GameObject itemToRemove){
+         networkView.RPC("RemoveItem_overNetwork", RPCMode.All, itemToRemove.name);
+
+     }
+
+     [RPC]
+     public void RemoveItem_overNetwork(string itemToRemove_name){
+         GameObject itemToRemove = Items_Manager.items_dict[itemToRemove_name];
+         itemRemover.RemoveItem(itemToRemove);
      }
 
 }

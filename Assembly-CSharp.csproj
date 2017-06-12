@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\SyncPos_LegacyRpc\Resources\Scripts\DraggableXZ.cs" />
+     <Compile Include="Assets\SyncPos_LegacyRpc\Resources\Scripts\ItemRemover.cs" />
      <Compile Include="Assets\SyncPos_LegacyRpc\Resources\Scripts\ItemSpawner.cs" />
      <Compile Include="Assets\SyncPos_LegacyRpc\Resources\Scripts\Items_Manager.cs" />
      <Compile Include="Assets\SyncPos_LegacyRpc\Resources\Scripts\Network_Maneger.cs" />

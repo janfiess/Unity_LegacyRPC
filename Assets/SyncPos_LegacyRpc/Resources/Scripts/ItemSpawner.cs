@@ -36,6 +36,7 @@ public class ItemSpawner : MonoBehaviour
 		networkManager.SpawnItem_overNetwork_sender(itemToSpawn_prefab, spawnPosition);
 	}
 
+    // called from Network_Manager.cs.SpawnItem_overNetwork
     public void SpawnItem(GameObject itemToSpawn_prefab, Vector3 spawnPosition)
     {
         GameObject newItem = Instantiate(itemToSpawn_prefab, spawnPosition, Quaternion.identity);
